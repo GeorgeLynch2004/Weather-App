@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    
+</head>
+<body>
+    <center><h2>Weather in {{location}}</h2></center>
+    <p>
+        Temperature {{weather.current.temperature}}°C</br>
+        Feels Like {{weather.current.feels_like}}°C</br>
+        Conditions {{weather.current.description}}</br>
+        Time {{weather.current.date}}</br>
+        Humidity {{weather.current.humidity}}%</br>
+        Kind {{weather.current.kind}}</br>
+        Locale {{weather.current.locale}}</br>
+        Precipitation {{weather.current.precipitation}}% chance</br>
+        Pressure {{weather.current.pressure}}</br>
+        Ultravoilet {{weather.current.ultraviolet}}</br>
+        Visibility {{weather.current.visibility}}</br>
+        Wind Direction {{weather.current.wind_direction}}</br>
+        Wind Speed {{weather.current.wind_speed}}mph</br>
+        </br>
+        <center>
+        <table>
+            Daily Forecasts</br>
+        </br>
+            {% for forecast in weather.forecasts %}
+                <tr>
+                    <br>
+                    Date: {{forecast.date}}</br>
+                    Temperature: {{forecast.temperature}}</br>
+                {% for hourly in forecast.hourly %}
+                    Time of day: {{hourly.time}}
+                    Temperature: {{hourly.temperature}}
+                    Description: {{hourly.description}}
+                </br>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+        </center>
+    </p>
+</body>
+
+{% endblock %}
